@@ -1,0 +1,8 @@
+openocd.exe -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg
+
+arm-none-eabi-gdb main.elf
+target remote localhost:3333
+monitor reset halt
+load
+continue
+cls-> clear

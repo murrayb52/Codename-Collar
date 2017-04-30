@@ -1,0 +1,15 @@
+openOCD:
+openocd.exe -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg 
+
+File conversion: 
+arm-none-eabi-as -g -mcpu=cortex-m0 -mthumb -o main.o main.s
+arm-none-eabi-ld -Ttext 0x08000000 -o main.elf main.o
+arm-none-eabi-gdb main.elf
+
+GDB:
+tar rem:3333
+mon reset halt
+load 
+frame 
+step
+c
