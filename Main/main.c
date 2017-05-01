@@ -301,7 +301,7 @@ void update_channel(void)	{
 void transmit (int channel_select)	{
 	select_channel (channel_select);							// change to desired channel (if necessary)
 	GPIOA->ODR &= ~(0b11<<chan);								// ----- FOR TESTING: clear channel transmit indicators -----
-	GPIOA->ODR |= ((0b01 + channel_count)<<chan);				// ----- FOR TESTING: PB6 = channel 1; PB7 = channel 2 ---------
+	GPIOA->ODR |= ((0b01 + channel_count)<<chan);				// ----- FOR TESTING: PB6 = channel 1; PB7 = channel 2 ------
 	delay(2);
 	while ((GPIOA->IDR & (0b1<<(transmit_1 + channel_select - 1))) == 0)	{	// while activate button held
 		GPIOA->ODR &= ~(0b1<<transmit_pin);						// transmit signal [CONTINUOUSLY]
@@ -309,7 +309,7 @@ void transmit (int channel_select)	{
 	}
 	GPIOA->ODR |= 0b1<<transmit_pin;							// stop transmission after activate button released by user
 	GPIOA->ODR |= 0b1<<chselr;									// 'release' channel select button after transmit button released by user
-	GPIOA->ODR &= ~(0b11<<chan);								// clear channel transmit indicators
+	GPIOA->ODR &= ~(0b11<<chan);								// ----- FOR TESTING: clear channel transmit indicators ------
 	GPIOA->ODR &= ~(0b11<<led_transmit_1);						// deactivate transmission LEDs
 }
 
